@@ -5,6 +5,11 @@
 #include <iostream>
 #include <FL/fl_draw.H>
 
+const double SEAHORSE_VALLEY_X = -0.388325975494149322475578856028732843697071075439453125;
+const double SEAHORSE_VALLEY_Y = -0.135914091422952243437549668669817037880420684814453125;
+const double INTERESTING_X = -0.75;
+const double INTERESTING_Y = 0.1;
+
 void callback_func( void* );
 
 class Main_Window : public Fl_Window {
@@ -12,19 +17,17 @@ public:
 	Mandelbrot *mandel;
 	Main_Window(int width, int height) : Fl_Window(width, height, "Mandelbrot") {
 		// resizable(this);
-		mandel = new Mandelbrot(800, 800, -3.0, 1.48, -2.14, 2.14);
+		mandel = new Mandelbrot(50, 800, 800, -2.0, 0.48, -1.12, 1.12, INTERESTING_X, INTERESTING_Y, 0.05 );
 	}
 
 protected:
 	void draw() override {
 		Fl_Window::draw();
 
-		for (int i = 0; i < 50; i++) {
-			mandel->next_iter_set();
-			mandel->draw();
+		while (true) {
+			mandel->calculate_and_draw();
+			mandel->zoom();
 		}
-
-		std::cout << "drawn" << std::endl;
 	}
 };
 

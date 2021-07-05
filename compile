@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ -std=c++11 `fltk-config --cxxflags` main.cpp mandelbrot.cpp  `fltk-config --ldflags` -o mandelbrot -Wall
