@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ $# -lt 2 ]; then
-	out="a.out"
-else
-	out=$2
-fi
-g++ -std=c++11 `fltk-config --cxxflags` "$1"  `fltk-config --ldflags` -o "$out"
